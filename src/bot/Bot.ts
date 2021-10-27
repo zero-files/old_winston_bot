@@ -1,5 +1,5 @@
 import { Client, ClientOptions } from "discord.js";
-import EventHandler from "bot.eventhandlers.EventHandler";
+import EventHandler from "bot/eventhandlers/EventHandler";
 
 export default class Bot {
     private _client:Client;

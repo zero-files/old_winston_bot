@@ -1,12 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 if(process.env.NODE_ENV === "development") require("dotenv").config();
 import {Intents} from "discord.js";
-import Env from "utils.Env";
-import Bot from "bot.Bot";
-import MessageHandler from "bot.eventhandlers.MessageHandler";
-import ReadyHandler from "bot.eventhandlers.ReadyHandler";
-import Commands from "bot.actions.Commands";
-import Ping from "bot.commands.Ping";
+import Env from "utils/Env";
+import Bot from "bot/Bot";
+import MessageHandler from "bot/eventhandlers/MessageHandler";
+import ReadyHandler from "bot/eventhandlers/ReadyHandler";
+import Commands from "bot/actions/Commands";
+import Ping from "bot/commands/Ping";
 
 class Main {
     private static commands_setup():Commands {

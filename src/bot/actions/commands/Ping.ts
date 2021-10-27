@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import Command from "bot.commands.Command";
+import Command from "bot/commands/Command";
 
 export default class Ping implements Command {
     public readonly name = "Ping";

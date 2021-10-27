@@ -1,4 +1,4 @@
-import EventHandler from "bot.eventhandlers.EventHandler";
+import EventHandler from "bot/eventhandlers/EventHandler";
 
 export default class ReadyHandler implements EventHandler {
     public event = "ready";

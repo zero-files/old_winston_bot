@@ -1,6 +1,6 @@
 import { ClientEvents, Message } from "discord.js";
-import EventHandler from "bot.eventhandlers.EventHandler";
-import Commands from "bot.actions.Commands";
+import EventHandler from "bot/eventhandlers/EventHandler";
+import Commands from "bot/actions/Commands";
 
 export default class MessageCreated implements EventHandler {
     public event:keyof ClientEvents = "messageCreate";

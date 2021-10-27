@@ -1,4 +1,4 @@
-import Command from "bot.commands.Command";
+import Command from "bot/commands/Command";
 
 export default class Commands {
     private command_map:Map<string, Command> = new Map();
