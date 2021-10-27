@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "outDir": "./dist/",
+        "baseUrl": "./src/",
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "paths": {
+            "utils/*": ["./utils/*"],
+            "bot/*": ["./bot/*"],
+            "bot/actions/*": ["./bot/actions/*"],
+            "bot/commands/*": ["./bot/actions/commands/*"],
+            "bot/eventhandlers/*": ["./bot/event_handlers/*"],
+        }
+    },
+    "exclude": [
+        "./node_modules/",
+        "./dist/",
+    ],
+    "include": [
+        "./src/",
+    ]
+}
