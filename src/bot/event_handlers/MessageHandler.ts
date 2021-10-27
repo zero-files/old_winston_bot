@@ -13,7 +13,7 @@ export default class MessageCreated implements EventHandler {
     public async handle(message:Message):Promise<void> {
         if(message.author.bot) return;
 
-        const command_attempt = message.content.replace(/>\s*/, "").split(" ")[0];
+        const command_attempt = message.content.replace(/!\s*/, "").split(" ")[0];
 
         const action = this.commands.match(command_attempt);
         void action?.execute(message)
