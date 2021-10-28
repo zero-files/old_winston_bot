@@ -12,7 +12,7 @@ Crea un issue planteando el problema a resolver y espera una respuesta. </br>
 Sé amable en la discusión y permite que los desarrolladores principales ofrezcan su ayuda para resolver los problemas.</br>
 Siéntete libre de crear cualquier issue que tengas en mente. Todas las ideas son bienvenidas, pero asegúrate que ésta no haya sido planteada con anterioridad.
 
-### Tutorial rápido, alpha 0.0.1
+## Tutorial rápido, alpha 0.0.1
 
 Necesitas node 16.x porque la librería de discord.js así lo pide. </br>
 Ejecuta `npm i`</br>
@@ -27,7 +27,7 @@ Developea el comando todo apiñado en el mismo archivo (excusa alpha), después 
 Importa la clase en el archivo `Main.ts`.</br>
 En el método static `command_setup`, crea la instancia del comando y pasasela al command_map. 
 
-#### Ejemplo
+### Ejemplo
 `Ping.ts`
 ```ts
 import Command from "bot/commands/Command";
@@ -58,7 +58,99 @@ class Main {
     //...
 //...
 ```
-### Roadmap: 
+
+## Database
+Es una base de datos en firebase, dentro del paqutede `database/` hay una clase llamada `FirebaseDatabase`, es un singleton (perdon). </br>
+El paquete tiene también una interface llamada `Repository`, utiliza el repositorio para extender tus clases repositorio (ver abajo).</br>
+Para esto es sencillo, es necesario entender el [patrón repository](https://medium.com/@erickwendel/generic-repository-with-typescript-and-node-js-731c10a1b98e) </br>
+
+Crea una entidad para los datos que te interese guardar en la base de datos. </br>
+Crea una clase que implemente a `Repository` para manejar esa entidad. <br>
+La clase repository debe recibir una instancia de la base de datos por constructor.</br>
+Usala.<br>
+
+`Banana.ts`
+```ts
+class Banana {
+    public id:string;
+    public color:string;
+    public size:number;
+    public lote:number;
+
+    constructor(id:string, color:string, size:number, lote:number){
+        this.id = id;
+        this.color = color;
+        this.size = size;
+        this.lote = lote;
+    }
+}
+```
+
+`BananasRepository.ts`
+```ts
+import Repository from "database/Repository"
+import Banana from "./Banana";
+
+class BananasRepository implements Repository<Banana> {
+    constructor()
+
+    public get_all():Promise<Banana[]> {
+        //obtener todas las bananas de la base de datos 
+    }
+
+    public get(id:string):Promise<Banana|null> {
+        //obtener una banana de la base de datos
+    }
+
+    public create(entity:Banana):Promise<void> {
+        //guardar una banana en la base de datos
+    }
+
+    public update(entity:Banana):Promise<void> {
+        //actualizar una banana
+    }
+
+    public delete(id:string):Promise<void> {
+        //eliminar una banana
+    }
+}
+```
+
+Para utilziarlo, acordate de hacerlo mediante inyección de dependencias, dependiendo de la interface y no de la clase concreta.
+
+`Foo.ts`
+```ts
+import Repository from "database/Repository";
+import Banana from "../foo/bar/Banana.ts"
+
+//...
+    private bananas_repository:Repository<Banana>;
+
+    constructor(bananas_repository:Repository<Banana>){
+        this.bananas_repository = bananas_repository;
+    }
+
+    public action():void{
+        this.bananas_repository.create(new Banana(...));
+    }
+    
+    //...
+```
+Inyecta las dependencias
+
+`Main.ts` 
+```ts
+//Obtené la instancia de la base de datos de firebase
+const database = FirebaseDatabase.instance();
+
+//Crea tu repository de bananas
+const bananas_repository = new BananasRepository(database);
+
+//Crea la instancia de tu clase usadora de repositories de bananas
+const foo = new Foo(bananas_repository);
+```
+
+## Roadmap: 
 Arreglar la arquitectura, basada en controllador, servicios, repositorios y entidades, tipica de REST.</br>
 Volver a poner los comandos del Winston anterior a esta nueva versión. </br>
 Arreglar el setup del programa en el archivo Main.ts </br>
