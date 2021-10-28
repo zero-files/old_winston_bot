@@ -16,6 +16,7 @@
             "bot/actions/*": ["./bot/actions/*"],
             "bot/commands/*": ["./bot/actions/commands/*"],
             "bot/eventhandlers/*": ["./bot/event_handlers/*"],
+            "database/*": ["./database/"]
         }
     },
     "exclude": [
