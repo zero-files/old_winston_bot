@@ -5,7 +5,7 @@ Antes de contribuir en este repositorio, por favor
  * lee nuestro [CODE_OF_CONDUCT.md](https://github.com/zero-files/winston_bot/blob/main/CODE_OF_CONDUCT.md),
  * visita nuestros [issues](https://github.com/zero-files/winston_bot/issues),
  * considera formar parte de la discusión en [Discord](https://discord.gg/vSETxB2),
- * si es tu primera vez, lee un resumen de cómo contribuir: [Contribuir por primera vez en Github](https://gist.github.com/zero-files/31e73d0573142d0573eb58d69a5158fd)
+ * si es tu primera vez, lee un resumen de cómo contribuir: [Contribuir por primera vez en Github](https://gist.github.com/EnzoDiazDev/31e73d0573142d0573eb58d69a5158fd)
  * termina de leer este archivo. 
 
 Crea un issue planteando el problema a resolver y espera una respuesta. </br>
