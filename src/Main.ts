@@ -7,12 +7,18 @@ import MessageHandler from "bot/eventhandlers/MessageHandler";
 import ReadyHandler from "bot/eventhandlers/ReadyHandler";
 import Commands from "bot/actions/Commands";
 import Ping from "bot/commands/Ping";
+import Clear from "bot/actions/commands/Clear";
+import EightBall from "bot/actions/commands/EightBall";
+import Dice from "bot/commands/Dice";
 
 class Main {
     private static commands_setup():Commands {
         const commands = new Commands();
 
-        commands.add(new Ping());
+        commands.add(new Ping())
+            .add(new Clear())
+            .add(new EightBall())
+            .add(new Dice());
 
         return commands;
     }
