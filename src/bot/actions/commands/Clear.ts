@@ -14,7 +14,7 @@ export default class Clear implements Command {
             return;
         }
 
-        const msgContent = message.content;
+        const msgContent = message.content.split(" ").splice(1);
         const memberToFilter = message.mentions.members?.first();
         const msgNum = parseInt(msgContent[0], 10);
 

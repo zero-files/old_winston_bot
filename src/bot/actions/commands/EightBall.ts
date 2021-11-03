@@ -33,7 +33,7 @@ export default class EightBall implements Command {
         const sentence = message.content.split(" ").splice(1).join(" ").toLowerCase();
 
         if(!sentence) {
-            message.channel.send("Hazme una pregunta primero");
+            message.channel.send("Hazme una pregunta primero.");
         } else {
             const response = this.responses[Math.floor(seed(sentence)() * this.responses.length)];
             message.channel.send(response);
