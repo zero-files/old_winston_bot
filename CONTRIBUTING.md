@@ -15,17 +15,17 @@ Siéntete libre de crear cualquier issue que tengas en mente. Todas las ideas so
 ## Tutorial rápido, alpha 0.0.1
 
 Necesitas node 16.x porque la librería de discord.js así lo pide. </br>
-Ejecuta `npm i`</br>
+Ejecuta `npm i`.</br>
 Crea el archivo `.env`, revisá el archivo `src/utils/Env.ts` para conocer las variables de entorno.</br> 
-En desarrollo ejecuta `npm run dev` para iniciar el programa</br>
-Una vez realizado los cambios, corre `npm run start:local` para correr el programa en local. 
+En desarrollo ejecuta `npm run dev` para iniciar el programa.</br>
+Una vez realizado los cambios, ejecuta `npm run start:local` para ejecutar el programa en local. 
 
 Crea un archivo en la carpeta `src/bot/actions/commands`.</br>
-Exporta por default la clase con el mismo nombre del archivo, importa la interface `Command` from `"bot/commands/Command"`</br>
-Implementa la interface.</br>
-Developea el comando todo apiñado en el mismo archivo (excusa alpha), después arreglo la arquitecutra.</br>
+Exporta por defecto la clase con el mismo nombre del archivo, importa la interfaz `Command` desde `"bot/commands/Command"`</br>
+Implementa la interfaz.</br>
+Desarrolla el comando todo apiñado en el mismo archivo (excusa alpha), después arreglo la arquitecutra.</br>
 Importa la clase en el archivo `Main.ts`.</br>
-En el método static `command_setup`, crea la instancia del comando y pasasela al command_map. 
+En el método estático `command_setup`, crea la instancia del comando y pasasela al command_map. 
 
 ### Ejemplo
 `Ping.ts`
@@ -60,13 +60,13 @@ class Main {
 ```
 
 ## Database
-Es una base de datos en firebase, dentro del paqutede `database/` hay una clase llamada `FirebaseDatabase`, es un singleton (perdon). </br>
-El paquete tiene también una interface llamada `Repository`, utiliza el repositorio para extender tus clases repositorio (ver abajo).</br>
+Es una base de datos en Firebase. Dentro del paquete de `database/` hay una clase llamada `FirebaseDatabase`. Es un singleton (perdón). </br>
+El paquete tiene también una interfaz llamada `Repository`. Utiliza el repositorio para extender tus clases repositorio (ver abajo).</br>
 Para esto es sencillo, es necesario entender el [patrón repository](https://medium.com/@erickwendel/generic-repository-with-typescript-and-node-js-731c10a1b98e) </br>
 
 Crea una entidad para los datos que te interese guardar en la base de datos. </br>
 Crea una clase que implemente a `Repository` para manejar esa entidad. <br>
-La clase repository debe recibir una instancia de la base de datos por constructor.</br>
+La clase repositorio debe recibir una instancia de la base de datos por constructor.</br>
 Usala.<br>
 
 `Banana.ts`
@@ -116,7 +116,7 @@ class BananasRepository implements Repository<Banana> {
 }
 ```
 
-Para utilziarlo, acordate de hacerlo mediante inyección de dependencias, dependiendo de la interface y no de la clase concreta.
+Para utilziarlo, acordate de hacerlo mediante inyección de dependencias, dependiendo de la interfaz y no de la clase concreta.
 
 `Foo.ts`
 ```ts
@@ -151,7 +151,7 @@ const foo = new Foo(bananas_repository);
 ```
 
 ## Roadmap: 
-Arreglar la arquitectura, basada en controllador, servicios, repositorios y entidades, tipica de REST.</br>
+Arreglar la arquitectura, basada en controlador, servicios, repositorios y entidades, típica de REST.</br>
 Volver a poner los comandos del Winston anterior a esta nueva versión. </br>
 Arreglar el setup del programa en el archivo Main.ts </br>
-Levantar la base de datos en firebase.
+Levantar la base de datos en Firebase.
