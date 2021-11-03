@@ -21,6 +21,7 @@
   "homepage": "https://github.com/zero-files/winston_bot#readme",
   "devDependencies": {
     "@types/node": "^16.10.2",
+    "@types/seed-random": "^2.2.1",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
     "cross-env": "^7.0.2",
@@ -34,6 +35,7 @@
   },
   "dependencies": {
     "discord.js": "^13.2.0",
-    "firebase-admin": "^10.0.0"
+    "firebase-admin": "^10.0.0",
+    "seed-random": "^2.2.0"
   }
 }
