@@ -6,9 +6,9 @@ export default class Clear implements Command {
     public readonly description = "Elimina tantos mensajes como se desee, excluyendo el mensaje del comando.";
     public readonly triggers = ["clear"];
 
-    private delLimit = 100; 
+    private delLimit = 100;
 
-    public async execute(message:Message):Promise<void>{
+    public async execute(message:Message):Promise<void> {
         if(!message.member?.permissions.has("MANAGE_MESSAGES")){
             message.channel.send("No tienes permiso para usar este comando.");
             return;
@@ -21,16 +21,16 @@ export default class Clear implements Command {
         //parseInt() devuelve NaN si no puede parsear el contenido, y cualquier operación lógica devuelve false (menos 'NaN || true')
         if(msgNum > 0){
             if(msgNum > this.delLimit){
-                message.channel.send(`No se pueden eliminar más de ${this.delLimit} mensajes a la vez`)
+                message.channel.send(`No se pueden eliminar más de ${this.delLimit} mensajes a la vez`);
                 return;
             }
-            
-            let msgsToDel = await message.channel.messages.fetch({limit: msgNum, before: message.id})
-            .then(msgCol => msgCol
-                .filter(msg => memberToFilter ? (msg.member === memberToFilter) : true)
-            );
-            msgsToDel.delete(message.id)
-            
+
+            const msgsToDel = await message.channel.messages.fetch({limit: msgNum, before: message.id})
+                .then(msgCol => msgCol
+                    .filter(msg => memberToFilter ? (msg.member === memberToFilter) : true)
+                );
+            msgsToDel.delete(message.id);
+
             if(msgsToDel.size === 0){
                 message.channel.send(`No se han encontrado mensajes de ${memberToFilter?.displayName} en `
                                     +`los últimos ${msgNum} mensajes o has mencionado un usuario no válido.`);
@@ -38,19 +38,19 @@ export default class Clear implements Command {
             }
 
             (<TextChannel>message.channel).bulkDelete(msgsToDel)
-            .then(() => {
-                message.channel.send("Borrado con éxito")
-                .then(msg => {
-                    setTimeout(() =>  {
-                        msg.delete(), 10000;
-                    });
+                .then(() => {
+                    message.channel.send("Borrado con éxito")
+                        .then(msg => {
+                            setTimeout(() =>  {
+                                msg.delete(), 10000;
+                            });
+                        });
+                })
+                .catch(e => {
+                    message.channel.send("No se han podido eliminar los mensajes")
+                        .then(msg => setTimeout(() =>  msg.delete(),10000));
+                    console.error(e);
                 });
-            })
-            .catch(e => {
-                message.channel.send("No se han podido eliminar los mensajes")
-                .then(msg => setTimeout(() =>  msg.delete(),10000));
-                console.error(e);
-            });
             return;
         }
 
