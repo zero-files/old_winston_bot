@@ -7,7 +7,7 @@ export default class Dice implements Command {
     public readonly triggers = ["dice"];
 
     public async execute(message: Message):Promise<void> {
-        const msgContent = message.content.split(" ").splice(1).join(" ");
+        const msgContent = message.content.split(" ").splice(1);
         let sides = Number(msgContent[0]);
         let times = Number(msgContent[1]);
 
