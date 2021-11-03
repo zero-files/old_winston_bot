@@ -1,13 +1,14 @@
 import { Message, TextChannel } from "discord.js";
-import Command from "./Command";
+import Command from "bot/commands/Command";
 
 export default class Clear implements Command {
-    readonly name = "Clear";
-    readonly description = "Elimina tantos mensajes como se desee, excluyendo el mensaje del comando.";
-    readonly triggers = ["clear"];
+    public readonly name = "Clear";
+    public readonly description = "Elimina tantos mensajes como se desee, excluyendo el mensaje del comando.";
+    public readonly triggers = ["clear"];
 
     private delLimit = 100; 
-    public async execute(message:Message){
+
+    public async execute(message:Message):Promise<void>{
         if(!message.member?.permissions.has("MANAGE_MESSAGES")){
             message.channel.send("No tienes permiso para usar este comando.");
             return;
@@ -39,7 +40,11 @@ export default class Clear implements Command {
             (<TextChannel>message.channel).bulkDelete(msgsToDel)
             .then(() => {
                 message.channel.send("Borrado con éxito")
-                .then(msg => setTimeout(() =>  msg.delete(),10000))
+                .then(msg => {
+                    setTimeout(() =>  {
+                        msg.delete(), 10000;
+                    });
+                });
             })
             .catch(e => {
                 message.channel.send("No se han podido eliminar los mensajes")
