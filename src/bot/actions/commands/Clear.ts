@@ -1,5 +1,6 @@
 import { Message, TextChannel } from "discord.js";
 import Command from "bot/commands/Command";
+import StrFun from "utils/StrFun";
 
 export default class Clear implements Command {
     public readonly name = "Clear";
@@ -14,7 +15,7 @@ export default class Clear implements Command {
             return;
         }
 
-        const msgContent = message.content.split(" ").splice(1);
+        const msgContent = StrFun.strip(message.content);
         const memberToFilter = message.mentions.members?.first();
         const msgNum = parseInt(msgContent[0], 10);
 

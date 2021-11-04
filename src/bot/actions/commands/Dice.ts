@@ -1,5 +1,6 @@
 import { Message } from "discord.js";
 import Command from "bot/commands/Command";
+import StrFun from "utils/StrFun";
 
 export default class Dice implements Command {
     public readonly name = "Dice";
@@ -7,7 +8,7 @@ export default class Dice implements Command {
     public readonly triggers = ["dice"];
 
     public async execute(message: Message):Promise<void> {
-        const msgContent = message.content.split(" ").splice(1);
+        const msgContent = StrFun.strip(message.content);
         let sides = Number(msgContent[0]);
         let times = Number(msgContent[1]);
 

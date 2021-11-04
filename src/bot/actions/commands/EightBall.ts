@@ -30,7 +30,7 @@ export default class EightBall implements Command {
     ];
 
     public async execute(message:Message):Promise<void> {
-        const sentence = message.content.split(" ").splice(1).join(" ").toLowerCase();
+        const sentence = message.content.replace(/!\s*/, "").split(" ").slice(1).join(" ").toLowerCase();
 
         if(!sentence) {
             message.channel.send("Hazme una pregunta primero.");
