@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import Command from "bot/commands/Command";
 import seed from "seed-random";
+import StrFun from "utils/StrFun";
 
 export default class EightBall implements Command {
     readonly name = "8ball";
@@ -30,10 +31,10 @@ export default class EightBall implements Command {
     ];
 
     public async execute(message:Message):Promise<void> {
-        const sentence = message.content.split(" ").splice(1).join(" ").toLowerCase();
+        const sentence = StrFun.strip(message.content).join(" ").toLowerCase();
 
         if(!sentence) {
-            message.channel.send("Hazme una pregunta primero");
+            message.channel.send("Hazme una pregunta primero.");
         } else {
             const response = this.responses[Math.floor(seed(sentence)() * this.responses.length)];
             message.channel.send(response);
