@@ -42,14 +42,14 @@ export default class Clear implements Command {
                 .then(() => {
                     message.channel.send("Borrado con éxito")
                         .then(msg => {
-                            setTimeout(() =>  {
-                                msg.delete(), 10000;
-                            });
+                            setTimeout(() => msg.delete(), 10000);
                         });
                 })
                 .catch(e => {
                     message.channel.send("No se han podido eliminar los mensajes")
-                        .then(msg => setTimeout(() =>  msg.delete(),10000));
+                        .then(msg => {
+                            setTimeout(() => msg.delete(),10000);
+                        });
                     console.error(e);
                 });
             return;
