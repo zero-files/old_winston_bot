@@ -33,4 +33,25 @@ export default class Env {
             throw new Error("FIREBASE_PRIVATE_KEY is not a valid base64 string");
         }
     }
+
+    public static get GOOGLE_API_KEY():string {
+        const api_key = process.env.GOOGLE_API_KEY;
+        if (api_key === undefined) throw new UndefinedEnvVar("GOOGLE_API_KEY");
+
+        return api_key;
+    }
+
+    public static get GOOGLE_ENGINE_ID():string {
+        const engine_id = process.env.GOOGLE_ENGINE_ID;
+        if (engine_id === undefined) throw new UndefinedEnvVar("GOOGLE_ENGINE_ID");
+
+        return engine_id;
+    }
+
+    public static get OWM_API_KEY():string {
+        const api_key = process.env.OWM_API_KEY;
+        if (api_key === undefined) throw new UndefinedEnvVar("OWM_API_KEY");
+
+        return api_key;
+    }
 }
