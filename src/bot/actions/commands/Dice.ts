@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import Command from "bot/commands/Command";
 import StrFun from "utils/StrFun";
+import RandomFuns from "utils/RandomFuns";
 
 export default class Dice implements Command {
     public readonly name = "Dice";
@@ -23,7 +24,7 @@ export default class Dice implements Command {
         const responses:string[] = [];
 
         for(let i = 0; i < times; i++) {
-            responses.push(`> :game_die: **${Math.floor(Math.random() * sides) + 1}**`);
+            responses.push(`> :game_die: **${Math.floor(RandomFuns.randomFloat() * sides) + 1}**`);
         }
 
         message.channel.send(responses.join("\n"));

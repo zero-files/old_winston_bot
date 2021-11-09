@@ -3,10 +3,10 @@ import Command from "bot/commands/Command";
 import {evaluate} from "mathjs";
 import StrFun from "utils/StrFun";
 
-export default class Math implements Command {
-    public readonly name = "Math";
+export default class Maths implements Command {
+    public readonly name = "Maths";
     public readonly description = "Evalúa la expresión matemática introducida.";
-    public readonly triggers = ["math"];
+    public readonly triggers = ["math", "maths"];
 
     public async execute(message: Message):Promise<void> {
         const formula = StrFun.strip(message.content).join("");

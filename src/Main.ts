@@ -10,7 +10,11 @@ import Ping from "bot/commands/Ping";
 import Clear from "bot/actions/commands/Clear";
 import EightBall from "bot/actions/commands/EightBall";
 import Dice from "bot/commands/Dice";
-import Math from "bot/commands/Math";
+import Maths from "bot/commands/Maths";
+import Weather from "bot/actions/commands/Weather";
+import Smn from "bot/actions/commands/Smn";
+import ImageSearch from "bot/actions/commands/ImageSearch";
+import Choose from "bot/actions/commands/Choose";
 
 class Main {
     private static commands_setup():Commands {
@@ -20,7 +24,21 @@ class Main {
             .add(new Clear())
             .add(new EightBall())
             .add(new Dice())
-            .add(new Math());
+            .add(new Maths())
+            .add(new Smn())
+            .add(new Choose());
+        try {
+            commands.add(new Weather(Env.OWM_API_KEY));
+        }
+        catch(e) {
+            console.error(e);
+        }
+        try {
+            commands.add(new ImageSearch(Env.GOOGLE_API_KEY,Env.GOOGLE_ENGINE_ID));
+        }
+        catch(e) {
+            console.error(e);
+        }
 
         return commands;
     }

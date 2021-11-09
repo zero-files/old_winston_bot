@@ -1,13 +1,13 @@
 import { randomBytes } from "crypto";
 
-export default class RandomUInt8 {
+export default class RandomFuns {
     /**
      * Generates a cryptographically secure pseudorandom number from 0 to 255,
      * as specified by (`min`,`max`)
      * @param min A minimum expected number ─ *default: `0`*
      * @param max A maximum expected number ─ *default: `255`*
      */
-    public static generate(min = 0, max = 255): number {
+    public static randomUInt8(min = 0, max = 255): number {
         //parameters check
         if (min === max) return max;
         if (min > max) {
@@ -25,8 +25,12 @@ export default class RandomUInt8 {
         const max_range = 256;
 
         if (randomByte >= Math.floor(max_range / range) * range)
-            return this.generate(min, max);
+            return this.randomUInt8(min, max);
 
         return min + (randomByte % range);
+    }
+
+    public static randomFloat():number {
+        return randomBytes(4).readUInt32LE() / 0xFFFFFFFF;
     }
 }
