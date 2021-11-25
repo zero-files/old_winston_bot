@@ -15,6 +15,7 @@ import Weather from "bot/actions/commands/Weather";
 import Smn from "bot/actions/commands/Smn";
 import ImageSearch from "bot/actions/commands/ImageSearch";
 import Choose from "bot/actions/commands/Choose";
+import English from "bot/actions/commands/English";
 
 class Main {
     private static commands_setup():Commands {
@@ -26,6 +27,7 @@ class Main {
             .add(new Dice())
             .add(new Maths())
             .add(new Smn())
+            .add(new English())
             .add(new Choose());
         try {
             commands.add(new Weather(Env.OWM_API_KEY));

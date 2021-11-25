@@ -42,7 +42,7 @@ export default class ImageSearch implements Command {
                     if(images.length === 0) {
                         message.channel.send(`No encontré nada para \`${query}\` en internet.`);
                     } else {
-                        const random_index = Math.floor((Math.random() * images.length) + 1);
+                        const random_index = Math.floor((RandomFuns.randomFloat() * images.length) + 1);
                         const image_selected = images[random_index].link;
                         message.channel.send({files:[image_selected]}).catch(() =>
                             message.channel.send("El enlace obtenido está roto.")

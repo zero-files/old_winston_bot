@@ -19,21 +19,23 @@ export default class Smn implements Command {
             axios.get("https://ws.smn.gob.ar/map_items/weather")
                 .then(response => {
                     const cities = JSON.parse(JSON.stringify(response.data, ["name", "province", "weather", "temp", "st"]));
-                    const city_weather = cities.find(city_weather => {
-                        return (StrFun.normalize(city_weather.name).toLowerCase() === StrFun.normalize(city));
+                    const city_weather = cities.find(wthr_city => {
+                        return (StrFun.normalize(wthr_city.name).toLowerCase() === StrFun.normalize(city));
                     });
 
-                    if(city_weather){
+                    if(city_weather) {
                         message.channel.send(`En ${city_weather.name} (${city_weather.province}), hace ${city_weather.weather.st || city_weather.weather.temp}°C`);
                         this.query_attempts = 0;
 
-                    } else {
+                    }
+                    else {
                         this.query_attempts++;
-                        if(this.query_attempts === 5){
+                        if(this.query_attempts === 5) {
                             this.query_attempts = 0;
                             message.channel.send("Por favor, solo ciudades argentinas.");
 
-                        } else {
+                        }
+                        else {
                             message.channel.send(`La ciudad \`${city}\` no ha sido encontrada.`);
                         }
                     }

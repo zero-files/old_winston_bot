@@ -69,9 +69,8 @@ export default class Weather implements Command {
                 .then(response => {
                     const data = response.data;
 
-                    if(data["cod"] === 200 ) {
+                    if(data["cod"] == 200 ) {
                         const icon = this.__replaceIcon( data["weather"][0]["icon"] );
-                        //let icon = "http://openweathermap.org/img/wn/" + data["weather"][0]["icon"] + "@2x.png";
 
                         const description = StrFun.capitalize( data["weather"][0]["description"] );
                         const temp = data["main"]["temp"];
@@ -83,7 +82,7 @@ export default class Weather implements Command {
                     }
                 })
                 .catch(e => {
-                    if(e.response.data["cod"] === "404"){
+                    if(e.response.data["cod"] == 404){
                         message.channel.send(`La ciudad \`${city}\` no ha sido encontrada.`);
                         return;
                     }
