@@ -16,6 +16,7 @@ import Smn from "bot/actions/commands/Smn";
 import ImageSearch from "bot/actions/commands/ImageSearch";
 import Choose from "bot/actions/commands/Choose";
 import English from "bot/actions/commands/English";
+import Help from "bot/actions/commands/Help";
 
 class Main {
     private static commands_setup():Commands {
@@ -41,6 +42,8 @@ class Main {
         catch(e) {
             console.error(e);
         }
+
+        commands.add(new Help(commands));
 
         return commands;
     }

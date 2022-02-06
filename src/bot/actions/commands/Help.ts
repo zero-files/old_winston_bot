@@ -14,7 +14,7 @@ export default class Help implements Command {
         const fieldData: Array<{name:string, value:string}> = [];
 
         for(const command of commands.get_all()) {
-            fieldData.push({name: command.name, value: command.description});
+            fieldData.push({name: command.triggers.join(", "), value: command.description});
         }
 
         this.embed.setTitle("Comandos")
