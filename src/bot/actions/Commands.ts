@@ -29,6 +29,13 @@ export default class Commands {
     }
 
     /**
+     * Get an IterableIterator from the command map
+    */
+    public get_all():Command[] {
+        return Array.from(this.command_map.values());
+    }
+
+    /**
      * Remove a command from the command map
      * @param name command name
      */
