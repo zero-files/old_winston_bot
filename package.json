@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/zero-files/winston_bot#readme",
   "devDependencies": {
-    "@types/node": "^16.10.2",
+    "@types/node": "^16.11.26",
     "@types/seed-random": "^2.2.1",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",

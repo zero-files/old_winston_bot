@@ -54,4 +54,11 @@ export default class Env {
 
         return api_key;
     }
+
+    public static get COMMAND_PREFIX():string {
+        const api_key = process.env.COMMAND_PREFIX;
+        if (api_key === undefined) throw new UndefinedEnvVar("COMMAND_PREFIX");
+
+        return api_key;
+    }
 }
