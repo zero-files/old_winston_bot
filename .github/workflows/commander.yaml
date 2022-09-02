@@ -1,5 +1,5 @@
 name: Commander
-on: [wokflow_dispatch]
+on: [workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
