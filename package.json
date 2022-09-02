@@ -5,6 +5,7 @@
   "main": "./dist/Main.js",
   "scripts": {
     "build": "tsc && tsc-alias",
+    "commander": "node ./dist/commands/Commander.ts",
     "start": "node .",
     "start:local": "npm run build && cross-env NODE_ENV=development node .",
     "dev": "cross-env NODE_ENV=development ts-node -r tsconfig-paths/register ./src/Main.ts"
